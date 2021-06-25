@@ -100,7 +100,7 @@ const isValidEncoding = (query) => {
 
 const isValidTransactionType = async (transactionType) => {
   try {
-    await transactionTypes.get(transactionType);
+    await transactionTypes.getId(transactionType);
     return true;
   } catch (err) {
     return false;
@@ -860,7 +860,7 @@ const getTransactionTypeQuery = async (parsedQueryParams) => {
   if (_.isNil(transactionType)) {
     return '';
   }
-  const protoId = await transactionTypes.get(transactionType);
+  const protoId = await transactionTypes.getId(transactionType);
   return `${constants.transactionColumns.TYPE}${opsMap.eq}${protoId}`;
 };
 
